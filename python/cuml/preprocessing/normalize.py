@@ -2,8 +2,8 @@ import cupy as cp
 
 
 def _handle_zeros_in_scale(scale, copy=True):
-    ''' Makes sure that whenever scale is zero, we handle it correctly.
-    This happens in most scalers when we have constant features.'''
+    """ Makes sure that whenever scale is zero, we handle it correctly.
+    This happens in most scalers when we have constant features."""
 
     # if we are fitting on 1D arrays, scale might be a scalar
     if cp.isscalar(scale):
@@ -19,6 +19,22 @@ def _handle_zeros_in_scale(scale, copy=True):
 
 
 def normalize(X, norm='l2', axis=1, return_norm=False):
+    """
+    Normalizes array by givven norm.
+
+    Parameters
+    ----------
+    X : 2d array
+    norm : one of 'l1', 'l2', 'max'
+    axis : either 0 or 1
+    return_norm : wether to return calculated norms together with normed array
+
+    Returns
+    -------
+    X : normalized array
+    norms (optional) : norms of X
+    """
+
     # TODO add suppport for sparse X
 
     if isinstance(X, list):
